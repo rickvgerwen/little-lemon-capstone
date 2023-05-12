@@ -1,0 +1,10 @@
+.nav-menu {
+	display: flex;
+	flex-flow: row wrap;
+	list-style-type: none;
+}
+
+.nav-menu li {
+	margin: 0 1rem;
+	padding: 0.5rem;
+}
