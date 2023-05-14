@@ -7,4 +7,11 @@ header {
 	height: 5rem;
 	position: sticky;
 	top: 0;
+	background-color: var(--white);
+}
+
+img.img-logo {
+	max-height: 100%;
+	width: auto;
+	height: 3rem;
 }

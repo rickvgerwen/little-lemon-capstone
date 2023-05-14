@@ -1,0 +1,43 @@
+:root {
+	--primary-green: #495e57;
+	--primary-yellow: #f4ce14;
+	--secondary-orange: #ee9972;
+	--secondary-orange-lighter: #fbdabb;
+	--highlight-light: #edefee;
+	--highlight-dark: #333333;
+
+	--black: #0b0c0b;
+	--white: #f1f5f4;
+
+	--default-border-radius: 8px;
+	--double-border-radius: var(--default-border-radius) * 2;
+
+	--base-drop-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+	--default-transition: all ease-in-out 0.15s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Markazi Text", serif;
+}
+
+h1 {
+	font-size: 4rem;
+}
+
+h2 {
+	font-size: 2.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+}
+
+p {
+	font-size: 1rem;
+}

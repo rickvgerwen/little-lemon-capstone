@@ -6,13 +6,10 @@ import NavBar from "./NavBar";
 const Header = () => {
 	return (
 		<header>
-			<img
-				src={logo}
-				alt="Little Lemon Logo"
-				className="img-logo"
-				width={"400px"}
-			/>
-			<NavBar />
+			<div className="container">
+				<img src={logo} alt="Little Lemon Logo" className="img-logo" />
+				<NavBar />
+			</div>
 		</header>
 	);
 };
