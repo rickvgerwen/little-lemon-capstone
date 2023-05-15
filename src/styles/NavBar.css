@@ -5,17 +5,35 @@
 }
 
 .nav-menu li {
-	margin: 0 1rem;
+	margin: 0 0.5rem;
 	padding: 0.5rem;
 }
 
-.nav-menu li a {
+a {
 	text-decoration: none;
 	font-size: 1.25rem;
 	font-weight: 500;
 	color: var(--black);
+	position: relative;
 }
 
-.nav-menu li a:hover {
+a:hover {
 	color: var(--primary-yellow);
+}
+
+.active {
+	border-bottom: 2px solid var(--primary-green);
+}
+
+.active {
+	color: var(--primary-green);
+}
+
+a.disabled-nav-link {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+a.disabled-nav-link:hover {
+	color: inherit;
 }

@@ -1,0 +1,18 @@
+a.button {
+	background-color: var(--primary-yellow);
+	border: none;
+	font-size: 1.125rem;
+	font-weight: 500;
+	border-radius: var(--default-border-radius);
+	padding: 0.875rem 1.5rem;
+	outline: 2px solid var(--primary-yellow);
+	transition: var(--default-transition);
+	display: block;
+}
+
+a.button:hover {
+	cursor: pointer;
+	background-color: var(--primary-green);
+	color: var(--white);
+	outline: 2px solid var(--white);
+}

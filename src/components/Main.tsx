@@ -1,15 +1,14 @@
-import About from "./About";
-import Hero from "./Hero";
-import Highlights from "./Highlights";
-import Testimonials from "./Testimonials";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import BookingPage from "../pages/BookingPage";
 
 const Main = () => {
 	return (
 		<main>
-			<Hero />
-			<Highlights />
-			<Testimonials />
-			<About />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/booking" element={<BookingPage />} />
+			</Routes>
 		</main>
 	);
 };
