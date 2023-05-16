@@ -18,6 +18,11 @@ header .container {
 	padding: 0 5vw;
 }
 
+.hero .container {
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
 section {
 	padding: 1rem 0;
 }

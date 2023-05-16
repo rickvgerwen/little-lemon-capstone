@@ -1,12 +1,11 @@
 .nav-menu {
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: row nowrap;
 	list-style-type: none;
 }
 
 .nav-menu li {
-	margin: 0 0.5rem;
-	padding: 0.5rem;
+	margin: 0px 0.75rem;
 }
 
 a {
@@ -23,9 +22,6 @@ a:hover {
 
 .active {
 	border-bottom: 2px solid var(--primary-green);
-}
-
-.active {
 	color: var(--primary-green);
 }
 
@@ -36,4 +32,86 @@ a.disabled-nav-link {
 
 a.disabled-nav-link:hover {
 	color: inherit;
+}
+
+.toggle-menu {
+	width: 2rem;
+}
+
+.toggle-menu span {
+	display: block;
+	height: 3px;
+	width: 100%;
+	background-color: var(--primary-green);
+	margin-bottom: 5px;
+}
+
+.toggle-menu span:last-child {
+	margin-bottom: 0px;
+}
+
+input[type="checkbox"],
+label {
+	display: none;
+}
+
+@media only screen and (max-width: 980px) {
+	input[type="checkbox"] {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+		background: none;
+	}
+	input[type="checkbox"]:focus {
+		background: none;
+	}
+	label {
+		margin-left: auto;
+		padding: 8px 0px;
+		display: inline-block;
+		cursor: pointer;
+	}
+	input[type="checkbox"]:checked ~ nav {
+		display: block;
+		width: 100%;
+	}
+
+	nav {
+		display: none;
+		position: absolute;
+		left: 0;
+		top: 5rem;
+		background-color: var(--primary-green);
+		border: 1px solid var(--black);
+		padding: 0;
+	}
+	.nav-menu {
+		width: auto;
+		flex-flow: column wrap;
+	}
+	.nav-menu li {
+		padding: 0;
+		width: 100%;
+		display: inline-block;
+	}
+	.nav-menu li a {
+		position: relative;
+		color: var(--white);
+		padding: 1rem 1.5rem;
+		display: block;
+		border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+	}
+
+	.nav-menu li a.active:before {
+		position: absolute;
+		display: block;
+		content: "";
+		border-radius: 50%;
+		background-color: var(--primary-yellow);
+		width: 0.5rem;
+		height: 0.5rem;
+		top: 50%;
+		left: 0.5rem;
+		transform: translate(-50%, -50%);
+	}
 }

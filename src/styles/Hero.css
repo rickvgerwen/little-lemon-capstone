@@ -28,12 +28,10 @@ section.hero {
 
 .hero .img-container {
 	width: 20rem;
-	height: 25rem;
+	height: 27rem;
 	border-radius: var(--double-border-radius);
-	position: absolute;
-	top: 20%;
-	right: -5%;
-	transform: translateX(-50%);
+	position: relative;
+	transform: translateY(15%) scale(1.1);
 	overflow: hidden;
 	box-shadow: var(--base-drop-shadow);
 }
