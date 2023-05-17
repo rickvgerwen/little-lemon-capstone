@@ -2,20 +2,15 @@ import "../styles/BookingForm.css";
 
 import { useState } from "react";
 
-const BookingForm = () => {
+interface BookingFormProps {
+	availableTimes: string[];
+}
+
+const BookingForm = (props: BookingFormProps) => {
 	const [resDate, setResDate] = useState("");
 	const [resTime, setResTime] = useState("");
 	const [guests, setGuests] = useState("1");
 	const [occasion, setOccasion] = useState("");
-
-	const [availableTimes] = useState([
-		"17:00",
-		"18:00",
-		"19:00",
-		"20:00",
-		"21:00",
-		"22:00",
-	]);
 
 	const getIsFormValid = () => {
 		return resDate && resTime && guests && occasion;
@@ -58,7 +53,7 @@ const BookingForm = () => {
 							value={resTime}
 							onChange={(e) => setResTime(e.target.value)}
 						>
-							{availableTimes.map((time) => (
+							{props.availableTimes.map((time) => (
 								<option key={time} value={time}>
 									{time}
 								</option>

@@ -1,0 +1,18 @@
+footer {
+	position: relative;
+	margin-top: 2rem;
+}
+
+footer:before {
+	position: absolute;
+	content: "";
+	display: block;
+	top: 0;
+	left: 50%;
+	width: 20rem;
+	height: 2px;
+	transform: translate(-50%, -50%);
+	background-color: var(--primary-green);
+	border-radius: 100%;
+	opacity: 0.25;
+}
