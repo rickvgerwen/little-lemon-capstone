@@ -9,7 +9,6 @@ section.hero {
 	color: var(--primary-yellow);
 	margin-bottom: 0;
 	font-weight: 400;
-	margin-top: 1.5rem;
 }
 
 .hero span.sub-title {

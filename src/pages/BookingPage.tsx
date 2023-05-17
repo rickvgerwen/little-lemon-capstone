@@ -1,10 +1,10 @@
 import { Fragment } from "react";
-import Hero from "../components/Hero";
+import BookingForm from "../components/BookingForm";
 
 const BookingPage = () => {
 	return (
 		<Fragment>
-			<Hero />
+			<BookingForm />
 		</Fragment>
 	);
 };

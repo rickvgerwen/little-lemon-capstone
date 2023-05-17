@@ -1,0 +1,47 @@
+.booking-form {
+	display: grid;
+	max-width: 350px;
+	gap: 1.5rem;
+	margin-inline: auto;
+}
+
+.booking-form .field {
+	display: block;
+}
+
+.field label,
+.field select,
+.field input {
+	display: block;
+	width: 100%;
+}
+
+.field label {
+	margin-bottom: 0.5rem;
+}
+
+.field select,
+.field input {
+	padding: 0.5rem;
+	border: 1px solid var(--black);
+	font-family: "Karla", sans-serif;
+}
+
+.booking-form button[type="submit"] {
+	background-color: var(--primary-yellow);
+	border: none;
+	font-size: 1.125rem;
+	font-weight: 500;
+	border-radius: var(--default-border-radius);
+	padding: 0.875rem 1.5rem;
+	outline: 2px solid var(--primary-yellow);
+	transition: var(--default-transition);
+	display: inline-block;
+}
+
+.booking-form button[type="submit"]:hover {
+	cursor: pointer;
+	background-color: var(--primary-green);
+	color: var(--white);
+	outline: 2px solid var(--white);
+}

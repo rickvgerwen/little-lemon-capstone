@@ -50,28 +50,28 @@ a.disabled-nav-link:hover {
 	margin-bottom: 0px;
 }
 
-input[type="checkbox"],
-label {
+#toggle-mobile-nav,
+label.toggle-menu {
 	display: none;
 }
 
 @media only screen and (max-width: 980px) {
-	input[type="checkbox"] {
+	#toggle-mobile-nav {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 		background: none;
 	}
-	input[type="checkbox"]:focus {
+	#toggle-mobile-nav:focus {
 		background: none;
 	}
-	label {
+	label.toggle-menu {
 		margin-left: auto;
 		padding: 8px 0px;
 		display: inline-block;
 		cursor: pointer;
 	}
-	input[type="checkbox"]:checked ~ nav {
+	#toggle-mobile-nav:checked ~ nav {
 		display: block;
 		width: 100%;
 	}
