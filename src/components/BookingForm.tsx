@@ -4,6 +4,7 @@ import { useState } from "react";
 
 interface BookingFormProps {
 	availableTimes: string[];
+	updateTimes: (date: string) => void;
 }
 
 const BookingForm = (props: BookingFormProps) => {
@@ -32,7 +33,6 @@ const BookingForm = (props: BookingFormProps) => {
 	return (
 		<section className="bookingform">
 			<div className="container">
-				<h1>Reservations</h1>
 				<form className="booking-form" onSubmit={handleBooking}>
 					<div className="field">
 						<label htmlFor="res-date">Choose date</label>
@@ -42,6 +42,7 @@ const BookingForm = (props: BookingFormProps) => {
 							value={resDate}
 							onChange={(e) => {
 								setResDate(e.target.value);
+								props.updateTimes(e.target.value);
 							}}
 							placeholder="Choose date"
 						/>

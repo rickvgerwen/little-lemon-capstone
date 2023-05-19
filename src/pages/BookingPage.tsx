@@ -1,78 +1,65 @@
-import { Fragment, useEffect, useReducer, useState } from "react";
+import { Fragment, useEffect, useReducer } from "react";
 import BookingForm from "../components/BookingForm";
 
-interface TimesPerDate {
-	[key: string]: string[];
-}
+type AvailableTimesState = string[];
 
-interface BookingState {
-	availableTimes: string[];
-	selectedDate: string;
-}
+type AvailableTimesAction =
+	| { type: "INITIALIZE_TIMES"; times: string[] }
+	| { type: "UPDATE_TIMES"; times: string[] };
 
-type BookingTimesAction =
-	| { type: "INITIALIZE_TIMES" }
-	| { type: "UPDATE_TIMES"; selectedDate: string };
-
-const reducer = (state: BookingState, action: BookingTimesAction) => {
+const availableTimesReducer = (
+	state: AvailableTimesState,
+	action: AvailableTimesAction
+): AvailableTimesState => {
 	switch (action.type) {
 		case "INITIALIZE_TIMES":
-			const initialTimes = [
-				"17:00",
-				"18:00",
-				"19:00",
-				"20:00",
-				"21:00",
-				"22:00",
-			];
-
-			return {
-				...state,
-				availableTimes: initialTimes,
-			};
-
+			return action.times;
 		case "UPDATE_TIMES":
-			const timesOnSelectedDate = [
-				"17:00",
-				"18:00",
-				"19:00",
-				"20:00",
-				"21:00",
-				"22:00",
-			];
-
-			return {
-				...state,
-				availableTimes: timesOnSelectedDate,
-				selectedDate: action.selectedDate,
-			};
-
+			return action.times;
 		default:
 			return state;
 	}
 };
 
 const BookingPage = () => {
-	const initialState: BookingState = {
-		availableTimes: [],
-		selectedDate: "",
-	};
-
-	const [state, dispatch] = useReducer(reducer, initialState);
-
-	const { availableTimes, selectedDate } = state;
+	const [availableTimes, dispatch] = useReducer(availableTimesReducer, []);
 
 	useEffect(() => {
-		dispatch({ type: "INITIALIZE_TIMES" });
+		initializeTimes();
 	}, []);
 
-	const updateTimes = (selectedDate: string) => {
-		dispatch({ type: "UPDATE_TIMES", selectedDate });
+	const updateTimes = (date: string) => {
+		const updatedTimes: AvailableTimesState = [
+			"07:00",
+			"08:00",
+			"09:00",
+			"10:00",
+			"11:00",
+			"12:00",
+		];
+
+		dispatch({ type: "UPDATE_TIMES", times: updatedTimes });
+	};
+
+	const initializeTimes = () => {
+		const initialTimes: AvailableTimesState = [
+			"17:00",
+			"18:00",
+			"19:00",
+			"20:00",
+			"21:00",
+			"22:00",
+		];
+
+		dispatch({ type: "INITIALIZE_TIMES", times: initialTimes });
 	};
 
 	return (
 		<Fragment>
-			<BookingForm availableTimes={availableTimes} />
+			<div className="container">
+				<h1>BookingForm</h1>
+			</div>
+			<BookingForm availableTimes={availableTimes} updateTimes={updateTimes} />
 		</Fragment>
 	);
 };
