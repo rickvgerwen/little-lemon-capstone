@@ -5,6 +5,7 @@ import { useState } from "react";
 interface BookingFormProps {
 	availableTimes: string[];
 	updateTimes: (date: string) => void;
+	submitForm: (form: any) => void;
 }
 
 const BookingForm = (props: BookingFormProps) => {
@@ -26,7 +27,7 @@ const BookingForm = (props: BookingFormProps) => {
 
 	const handleBooking = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		alert("Reservation made!");
+		props.submitForm(e);
 		clearForm();
 	};
 

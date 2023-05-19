@@ -46,3 +46,10 @@ h3 {
 p {
 	font-size: 1rem;
 }
+
+.lead-text {
+	max-width: 300px;
+	font-size: 1.25rem;
+	line-height: 140%;
+	margin: 2rem 0;
+}

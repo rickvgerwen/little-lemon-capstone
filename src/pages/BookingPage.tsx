@@ -1,16 +1,18 @@
 import { Fragment, useEffect, useReducer } from "react";
 import BookingForm from "../components/BookingForm";
+import { fetchAPI, submitAPI } from "../assets/api/api";
+import { useNavigate } from "react-router-dom";
 
-type AvailableTimesState = string[];
+type AvailableTimes = string[];
 
 type AvailableTimesAction =
 	| { type: "INITIALIZE_TIMES"; times: string[] }
 	| { type: "UPDATE_TIMES"; times: string[] };
 
 const availableTimesReducer = (
-	state: AvailableTimesState,
+	state: AvailableTimes,
 	action: AvailableTimesAction
-): AvailableTimesState => {
+): AvailableTimes => {
 	switch (action.type) {
 		case "INITIALIZE_TIMES":
 			return action.times;
@@ -24,34 +26,48 @@ const availableTimesReducer = (
 const BookingPage = () => {
 	const [availableTimes, dispatch] = useReducer(availableTimesReducer, []);
 
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		initializeTimes();
 	}, []);
 
-	const updateTimes = (date: string) => {
-		const updatedTimes: AvailableTimesState = [
-			"07:00",
-			"08:00",
-			"09:00",
-			"10:00",
-			"11:00",
-			"12:00",
-		];
+	const updateTimes = async (date: string) => {
+		try {
+			const newDate = new Date(date);
 
-		dispatch({ type: "UPDATE_TIMES", times: updatedTimes });
+			const response = await fetchAPI(newDate);
+			const initialTimes: AvailableTimes = response;
+
+			dispatch({ type: "UPDATE_TIMES", times: initialTimes });
+		} catch (error) {
+			console.error("Failed to initialize times:", error);
+		}
 	};
 
-	const initializeTimes = () => {
-		const initialTimes: AvailableTimesState = [
-			"17:00",
-			"18:00",
-			"19:00",
-			"20:00",
-			"21:00",
-			"22:00",
-		];
+	const initializeTimes = async () => {
+		try {
+			const today = new Date();
 
-		dispatch({ type: "INITIALIZE_TIMES", times: initialTimes });
+			const response = await fetchAPI(today);
+			console.log({ today, response });
+
+			const initialTimes: AvailableTimes = response;
+
+			dispatch({ type: "INITIALIZE_TIMES", times: initialTimes });
+		} catch (error) {
+			console.error("Failed to initialize times:", error);
+		}
+	};
+
+	const submitForm = (formData: any) => {
+		const response = submitAPI(formData);
+
+		if (response) {
+			navigate("/booking-confirmed");
+		} else {
+			alert("Something went wrong. Try submitting again, please.");
+		}
 	};
 
 	return (
@@ -59,7 +75,11 @@ const BookingPage = () => {
 			<div className="container">
 				<h1>BookingForm</h1>
 			</div>
-			<BookingForm availableTimes={availableTimes} updateTimes={updateTimes} />
+			<BookingForm
+				availableTimes={availableTimes}
+				updateTimes={updateTimes}
+				submitForm={submitForm}
+			/>
 		</Fragment>
 	);
 };

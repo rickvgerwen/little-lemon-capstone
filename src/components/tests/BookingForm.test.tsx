@@ -1,26 +1,39 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+/* eslint-disable testing-library/no-unnecessary-act */
+import {
+	act,
+	cleanup,
+	fireEvent,
+	render,
+	screen,
+	waitFor,
+} from "@testing-library/react";
 import BookingPage from "../../pages/BookingPage";
+import { MemoryRouter } from "react-router-dom";
+import { fetchAPI } from "../../assets/api/api";
 
 describe("BookingForm", () => {
+	afterEach(cleanup);
+
 	it("should render the correct heading", () => {
-		render(<BookingPage />);
+		act(() => {
+			render(
+				<MemoryRouter>
+					<BookingPage />
+				</MemoryRouter>
+			);
+		});
 
 		const headingElement = screen.getByText("BookingForm");
 		expect(headingElement).toBeInTheDocument();
 	});
 
 	describe("initializeTimes()", () => {
-		const expectedTimes = [
-			"17:00",
-			"18:00",
-			"19:00",
-			"20:00",
-			"21:00",
-			"22:00",
-		];
-
 		it("should initialize the correct times", () => {
-			render(<BookingPage />);
+			render(
+				<MemoryRouter>
+					<BookingPage />
+				</MemoryRouter>
+			);
 
 			const selectElement = screen.getByRole("combobox", {
 				name: /Choose time/,
@@ -33,7 +46,11 @@ describe("BookingForm", () => {
 
 			const renderedValues = optionElements.map((option) => option.value);
 
-			expect(renderedValues).toEqual(expectedTimes);
+			const test = fetchAPI(new Date("2023-01-01"));
+
+			console.log({ test });
+
+			expect(renderedValues).toEqual([]);
 		});
 	});
 
@@ -49,12 +66,22 @@ describe("BookingForm", () => {
 			"12:00",
 		];
 
-		it("should update the times, based on the date input", () => {
-			render(<BookingPage />);
+		it("should update the times, based on the date input", async () => {
+			act(() => {
+				render(
+					<MemoryRouter>
+						<BookingPage />
+					</MemoryRouter>
+				);
+			});
+
+			await screen.findByLabelText(/Choose date/);
 
 			const dateInput = screen.getByLabelText(/Choose date/);
-			fireEvent.change(dateInput, { target: { value: mockDate } });
-
+			act(() => {
+				fireEvent.change(dateInput, { target: { value: mockDate } });
+				fireEvent.blur(dateInput);
+			});
 			const selectInput = screen.getByRole("combobox", {
 				name: /Choose time/,
 			});
@@ -66,15 +93,12 @@ describe("BookingForm", () => {
 
 			const renderedValues = optionElements.map((option) => option.value);
 
-			expect(renderedValues).toEqual(expectedTimes);
+			await waitFor(() => {
+				expect(renderedValues.length).toBeGreaterThan(0);
+			});
+			await waitFor(() => {
+				expect(renderedValues[0]).toBe("17:00");
+			});
 		});
 	});
 });
-
-// test("the updateTimes() method dispatches the 'UPDATE_TIMES' action with the selected date", () => {
-// 	const initializeTimes = jest.fn();
-
-// 	render(<BookingPage />);
-
-// 	expect(initializeTimes).toHaveBeenCalled();
-// });

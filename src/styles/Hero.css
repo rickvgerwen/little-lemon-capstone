@@ -18,13 +18,6 @@ section.hero {
 	margin-bottom: 1rem;
 }
 
-.hero .lead-text {
-	max-width: 300px;
-	font-size: 1.25rem;
-	line-height: 140%;
-	margin: 2rem 0;
-}
-
 .hero .img-container {
 	width: 20rem;
 	height: 27rem;
