@@ -50,7 +50,6 @@ const BookingPage = () => {
 			const today = new Date();
 
 			const response = await fetchAPI(today);
-			console.log({ today, response });
 
 			const initialTimes: AvailableTimes = response;
 
@@ -62,6 +61,8 @@ const BookingPage = () => {
 
 	const submitForm = (formData: any) => {
 		const response = submitAPI(formData);
+
+		console.log("hello");
 
 		if (response) {
 			navigate("/booking-confirmed");

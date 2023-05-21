@@ -1,5 +1,6 @@
 .booking-form {
 	display: grid;
+	width: 100%;
 	max-width: 350px;
 	gap: 1.5rem;
 	margin-inline: auto;
@@ -21,10 +22,17 @@
 }
 
 .field select,
-.field input {
+.field input,
+.form-error {
 	padding: 0.5rem;
 	border: 1px solid var(--black);
 	font-family: "Karla", sans-serif;
+}
+
+.form-error {
+	color: red;
+	border: none;
+	font-weight: 500;
 }
 
 .booking-form button[type="submit"] {
@@ -44,4 +52,9 @@
 	background-color: var(--primary-green);
 	color: var(--white);
 	outline: 2px solid var(--white);
+}
+
+.booking-form button[type="submit"]:disabled {
+	pointer-events: none;
+	cursor: not-allowed;
 }
