@@ -204,7 +204,7 @@ describe("BookingForm", () => {
 			fireEvent.change(resTimeInput, { target: { value: mockResTime } });
 
 			const guestsInput = screen.getByLabelText(/Number of guests/);
-			fireEvent.change(guestsInput, { target: { value: 20 } });
+			fireEvent.change(guestsInput, { target: { value: mockGuests } });
 
 			const occasionInput = screen.getByLabelText(/Occasion/);
 			fireEvent.change(occasionInput, { target: { value: mockOccasion } });
